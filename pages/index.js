@@ -1,14 +1,19 @@
-import * as React from "react";
-import * as Constants from "~/common/constants";
+import * as React from "react"
+import * as Constants from "~/common/constants"
+import "bootstrap/dist/css/bootstrap.min.css"
+import History from "../components/History"
+import SidebarContainer from "../components/SidebarContainer"
+import Cindy from "../components/Cindy"
 
 import Head from "next/head";
+import myDocument from "./_document.js"
 
 import { css } from "@emotion/react";
 
 const STYLES_LAYOUT_LEFT = css`
   height: calc(100vh - ${Constants.sizes.navigation}px);
   width: ${Constants.sizes.sidebar}px;
-  background: red;
+  ${'' /* background: red; */}
   font-size: 2rem;
   overflow-y: scroll;
 
@@ -20,10 +25,11 @@ const STYLES_LAYOUT_LEFT = css`
 `;
 
 const STYLES_LAYOUT_RIGHT = css`
+  ${'' /* display: inline-block; */}
   height: calc(100vh - ${Constants.sizes.navigation}px);
   min-width: 20%;
   width: 100%;
-  background: blue;
+  ${'' /* background: blue; */}
   font-size: 2rem;
   overflow-y: scroll;
 
@@ -36,8 +42,8 @@ const STYLES_LAYOUT_RIGHT = css`
 
 const STYLES_NAVIGATION = css`
   height: ${Constants.sizes.navigation}px;
-  background: green;
-  font-size: 2rem;
+  ${'' /* background: green; */}
+  font-size: 1rem;
 `;
 
 const STYLES_LAYOUT = css`
@@ -47,11 +53,13 @@ const STYLES_LAYOUT = css`
 `;
 
 export default class IndexPage extends React.Component {
+  
   render() {
-    const title = "next-express-emotion";
+    // console.log('document', document)
+    const title = "cindywu.org";
     const description =
-      "minimal example for a full client server web application with next, express, and emotion.";
-    const url = "https://github.com/jimmylee/next-express-emotion";
+      "a website about me";
+    const url = "https://cindywu.org";
 
     return (
       <React.Fragment>
@@ -93,10 +101,20 @@ export default class IndexPage extends React.Component {
 
           <link rel="shortcut icon" href="/static/favicon.ico" />
         </Head>
-        <nav css={STYLES_NAVIGATION}>Navigation</nav>
-        <div css={STYLES_LAYOUT}>
-          <span css={STYLES_LAYOUT_LEFT}>Left Sidebar</span>
-          <span css={STYLES_LAYOUT_RIGHT}>Right Content</span>
+        <nav className='p-4' css={STYLES_NAVIGATION}></nav>
+        <div className='p-3' css={STYLES_LAYOUT}>
+          {/* <span css={STYLES_LAYOUT_LEFT}>
+            <SidebarContainer />
+          </span> */}
+          <div id="right" css={STYLES_LAYOUT_RIGHT}>
+            <div className="col-md-3">
+              <History/>
+            </div>
+            <div className="col-md-9">
+              <div className="pb-3">hi, i am a cindy.</div>
+              <Cindy/>
+            </div>
+          </div>
         </div>
       </React.Fragment>
     );
